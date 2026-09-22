@@ -1,0 +1,212 @@
+{
+  "format": "bgfx",
+  "version": 1,
+  "meta": {
+    "name": "CRT Phosphor Pure Green Tetris (Dimmed)",
+    "song": "Terminal Green Flow",
+    "artist": "Classic CRT"
+  },
+  "stage": {
+    "width": 1920,
+    "height": 1080,
+    "duration": 18000,
+    "loop": true,
+    "background": {
+      "type": "radial",
+      "cx": 0.5,
+      "cy": 0.5,
+      "spread": 0.85,
+      "stops": [
+        {
+          "at": 0,
+          "color": "#041007"
+        },
+        {
+          "at": 0.65,
+          "color": "#020703"
+        },
+        {
+          "at": 1,
+          "color": "#010302"
+        }
+      ]
+    }
+  },
+  "layers": [
+    {
+      "id": "full_phosphor_glow",
+      "name": "CRT 전면 녹색 인광",
+      "type": "glow",
+      "x": -96,
+      "y": -54,
+      "w": 2112,
+      "h": 1188,
+      "color": "#1aff35",
+      "opacity": 0.12,
+      "blend": "screen",
+      "blur": 40,
+      "tracks": [
+        {
+          "prop": "opacity",
+          "loop": "loop",
+          "keys": [
+            {
+              "t": 0,
+              "v": 0.1,
+              "easing": "sine"
+            },
+            {
+              "t": 4500,
+              "v": 0.14,
+              "easing": "sine"
+            },
+            {
+              "t": 9000,
+              "v": 0.1,
+              "easing": "sine"
+            },
+            {
+              "t": 13500,
+              "v": 0.14,
+              "easing": "sine"
+            },
+            {
+              "t": 18000,
+              "v": 0.1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fullscreen_tetris",
+      "name": "화면 전체 천장 테트리스 보드",
+      "type": "blocks",
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "cols": 24,
+      "dropMs": 45,
+      "launchMs": 130,
+      "holdMs": 1200,
+      "fadeMs": 2000,
+      "pauseMs": 500,
+      "shapes": "tetromino",
+      "seed": 1984,
+      "palette": [
+        "#16a329"
+      ],
+      "showGrid": true,
+      "gridColor": "#0d5c18",
+      "gridAlpha": 0.1,
+      "gap": 2,
+      "radius": 0,
+      "shine": 0,
+      "glow": 0
+    },
+    {
+      "id": "terminal_grid",
+      "name": "모니터 매트릭스 그리드",
+      "type": "grid",
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "cell": 80,
+      "color": "#09240c",
+      "strokeWidth": 1,
+      "speed": 0,
+      "opacity": 0.2,
+      "blend": "screen"
+    },
+    {
+      "id": "crt_scanlines",
+      "name": "CRT 수평 주사선",
+      "type": "grid",
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "cell": 5,
+      "color": "#061a09",
+      "strokeWidth": 1,
+      "speed": 0.15,
+      "opacity": 0.3,
+      "blend": "overlay"
+    },
+    {
+      "id": "green_phosphor_dust",
+      "name": "인광 부유 입자",
+      "type": "particles",
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "color": "#20c237",
+      "count": 45,
+      "size": 3,
+      "direction": "up",
+      "shape": "square",
+      "sway": 20,
+      "speed": 0.5,
+      "opacity": 0.35,
+      "twinkle": true
+    },
+    {
+      "id": "clear_flash_beam",
+      "name": "리셋 주사 빔",
+      "type": "rect",
+      "x": 0,
+      "y": -80,
+      "w": 1920,
+      "h": 80,
+      "color": "#20c237",
+      "blend": "screen",
+      "opacity": 0.06,
+      "tracks": [
+        {
+          "prop": "y",
+          "loop": "loop",
+          "keys": [
+            {
+              "t": 0,
+              "v": -80,
+              "easing": "linear"
+            },
+            {
+              "t": 9000,
+              "v": 1160
+            },
+            {
+              "t": 18000,
+              "v": 1160
+            }
+          ]
+        },
+        {
+          "prop": "opacity",
+          "loop": "loop",
+          "keys": [
+            {
+              "t": 0,
+              "v": 0.06
+            },
+            {
+              "t": 8900,
+              "v": 0.06
+            },
+            {
+              "t": 9000,
+              "v": 0
+            },
+            {
+              "t": 18000,
+              "v": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
