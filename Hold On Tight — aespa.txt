@@ -2,9 +2,9 @@
   "format": "bgfx",
   "version": 1,
   "meta": {
-    "name": "CRT Phosphor Pure Green Tetris (Dimmed)",
-    "song": "Terminal Green Flow",
-    "artist": "Classic CRT"
+    "name": "Classic Colorful Tetris with Sidebar",
+    "song": "Korobeiniki Arcade",
+    "artist": "Classic Arcade"
   },
   "stage": {
     "width": 1920,
@@ -19,30 +19,30 @@
       "stops": [
         {
           "at": 0,
-          "color": "#041007"
+          "color": "#0d111d"
         },
         {
           "at": 0.65,
-          "color": "#020703"
+          "color": "#070912"
         },
         {
           "at": 1,
-          "color": "#010302"
+          "color": "#030408"
         }
       ]
     }
   },
   "layers": [
     {
-      "id": "full_phosphor_glow",
-      "name": "CRT 전면 녹색 인광",
+      "id": "full_soft_glow",
+      "name": "배경 은은한 광채",
       "type": "glow",
       "x": -96,
       "y": -54,
       "w": 2112,
       "h": 1188,
-      "color": "#1aff35",
-      "opacity": 0.12,
+      "color": "#4361ee",
+      "opacity": 0.1,
       "blend": "screen",
       "blur": 40,
       "tracks": [
@@ -52,27 +52,27 @@
           "keys": [
             {
               "t": 0,
-              "v": 0.1,
+              "v": 0.08,
               "easing": "sine"
             },
             {
               "t": 4500,
-              "v": 0.14,
+              "v": 0.12,
               "easing": "sine"
             },
             {
               "t": 9000,
-              "v": 0.1,
+              "v": 0.08,
               "easing": "sine"
             },
             {
               "t": 13500,
-              "v": 0.14,
+              "v": 0.12,
               "easing": "sine"
             },
             {
               "t": 18000,
-              "v": 0.1
+              "v": 0.08
             }
           ]
         }
@@ -80,7 +80,7 @@
     },
     {
       "id": "fullscreen_tetris",
-      "name": "화면 전체 천장 테트리스 보드",
+      "name": "화면 전체 알록달록 테트리스 보드",
       "type": "blocks",
       "x": 0,
       "y": 0,
@@ -93,13 +93,19 @@
       "fadeMs": 2000,
       "pauseMs": 500,
       "shapes": "tetromino",
-      "seed": 1984,
+      "seed": 2026,
       "palette": [
-        "#16a329"
+        "#00c8d7",
+        "#f5be18",
+        "#a040d8",
+        "#2ebd42",
+        "#eb3b46",
+        "#2979ff",
+        "#f0751e"
       ],
       "showGrid": true,
-      "gridColor": "#0d5c18",
-      "gridAlpha": 0.1,
+      "gridColor": "#323c58",
+      "gridAlpha": 0.18,
       "gap": 2,
       "radius": 0,
       "shine": 0,
@@ -114,10 +120,10 @@
       "w": 1920,
       "h": 1080,
       "cell": 80,
-      "color": "#09240c",
+      "color": "#1e263d",
       "strokeWidth": 1,
       "speed": 0,
-      "opacity": 0.2,
+      "opacity": 0.22,
       "blend": "screen"
     },
     {
@@ -129,21 +135,21 @@
       "w": 1920,
       "h": 1080,
       "cell": 5,
-      "color": "#061a09",
+      "color": "#0d1322",
       "strokeWidth": 1,
       "speed": 0.15,
-      "opacity": 0.3,
+      "opacity": 0.28,
       "blend": "overlay"
     },
     {
-      "id": "green_phosphor_dust",
-      "name": "인광 부유 입자",
+      "id": "floating_dust",
+      "name": "공중 부유 픽셀 입자",
       "type": "particles",
       "x": 0,
       "y": 0,
       "w": 1920,
       "h": 1080,
-      "color": "#20c237",
+      "color": "#e0e7ff",
       "count": 45,
       "size": 3,
       "direction": "up",
@@ -161,7 +167,7 @@
       "y": -80,
       "w": 1920,
       "h": 80,
-      "color": "#20c237",
+      "color": "#4cc9f0",
       "blend": "screen",
       "opacity": 0.06,
       "tracks": [
@@ -208,5 +214,113 @@
         }
       ]
     }
-  ]
+  ],
+  "sidebar": {
+    "stage": {
+      "width": 1920,
+      "height": 1080,
+      "duration": 8000,
+      "loop": true,
+      "background": {
+        "type": "solid",
+        "color": "#0b0b12"
+      }
+    },
+    "layers": [
+      {
+        "id": "sb_glow",
+        "name": "사이드바 광채",
+        "type": "glow",
+        "x": -24,
+        "y": -48,
+        "w": 528,
+        "h": 1056,
+        "color": "#4361ee",
+        "opacity": 0.1,
+        "blend": "screen",
+        "blur": 30
+      },
+      {
+        "id": "sb_tetris",
+        "name": "사이드바 알록달록 테트리스 보드",
+        "type": "blocks",
+        "x": 0,
+        "y": 0,
+        "w": 480,
+        "h": 960,
+        "cols": 8,
+        "dropMs": 45,
+        "launchMs": 130,
+        "holdMs": 1200,
+        "fadeMs": 2000,
+        "pauseMs": 500,
+        "shapes": "tetromino",
+        "seed": 2026,
+        "palette": [
+          "#00c8d7",
+          "#f5be18",
+          "#a040d8",
+          "#2ebd42",
+          "#eb3b46",
+          "#2979ff",
+          "#f0751e"
+        ],
+        "showGrid": true,
+        "gridColor": "#323c58",
+        "gridAlpha": 0.18,
+        "gap": 2,
+        "radius": 0,
+        "shine": 0,
+        "glow": 0
+      },
+      {
+        "id": "sb_grid",
+        "name": "사이드바 그리드",
+        "type": "grid",
+        "x": 0,
+        "y": 0,
+        "w": 480,
+        "h": 960,
+        "cell": 60,
+        "color": "#1e263d",
+        "strokeWidth": 1,
+        "speed": 0,
+        "opacity": 0.22,
+        "blend": "screen"
+      },
+      {
+        "id": "sb_scanlines",
+        "name": "사이드바 주사선",
+        "type": "grid",
+        "x": 0,
+        "y": 0,
+        "w": 480,
+        "h": 960,
+        "cell": 5,
+        "color": "#0d1322",
+        "strokeWidth": 1,
+        "speed": 0.15,
+        "opacity": 0.28,
+        "blend": "overlay"
+      },
+      {
+        "id": "sb_dust",
+        "name": "사이드바 입자",
+        "type": "particles",
+        "x": 0,
+        "y": 0,
+        "w": 480,
+        "h": 960,
+        "color": "#e0e7ff",
+        "count": 25,
+        "size": 3,
+        "direction": "up",
+        "shape": "square",
+        "sway": 15,
+        "speed": 0.5,
+        "opacity": 0.35,
+        "twinkle": true
+      }
+    ]
+  }
 }
