@@ -2,9 +2,9 @@
   "format": "bgfx",
   "version": 1,
   "meta": {
-    "name": "Classic Colorful Tetris with Sidebar",
-    "song": "Korobeiniki Arcade",
-    "artist": "Classic Arcade"
+    "name": "Hold On Tight",
+    "song": "Hold On Tight — aespa",
+    "artist": "aespa"
   },
   "stage": {
     "width": 1920,
@@ -15,15 +15,11 @@
       "type": "radial",
       "cx": 0.5,
       "cy": 0.5,
-      "spread": 0.85,
+      "spread": 0.8,
       "stops": [
         {
           "at": 0,
           "color": "#0d111d"
-        },
-        {
-          "at": 0.65,
-          "color": "#070912"
         },
         {
           "at": 1,
