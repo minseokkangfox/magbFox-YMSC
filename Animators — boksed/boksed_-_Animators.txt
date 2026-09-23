@@ -1,0 +1,1047 @@
+{
+  "format": "bgfx",
+  "version": 1,
+  "meta": {
+    "name": "Animators — boksed",
+    "song": "Animators",
+    "artist": "boksed"
+  },
+  "stage": {
+    "width": 1920,
+    "height": 1080,
+    "duration": 8000,
+    "unlimited": true,
+    "loop": true,
+    "background": {
+      "type": "linear",
+      "angle": 120,
+      "stops": [
+        {
+          "at": 0,
+          "color": "#141428"
+        },
+        {
+          "at": 1,
+          "color": "#05050b"
+        }
+      ]
+    }
+  },
+  "layers": [
+    {
+      "id": "ljnzy1f",
+      "name": "파랑 배경 사각형",
+      "type": "rect",
+      "x": -50,
+      "y": -20,
+      "w": 1985,
+      "h": 1206,
+      "rotation": 0,
+      "scale": 1,
+      "opacity": 1,
+      "color": "#0d18ff",
+      "fill": "solid",
+      "blend": "source-over",
+      "visible": true,
+      "radius": 24
+    },
+    {
+      "id": "lleybj2",
+      "name": "캐릭터 1 (왼쪽)",
+      "type": "image",
+      "x": 420,
+      "y": 258,
+      "w": 258,
+      "h": 564,
+      "rotation": 0,
+      "scale": 1,
+      "opacity": 0,
+      "color": "#7aa2ff",
+      "fill": "solid",
+      "blend": "source-over",
+      "visible": true,
+      "src": "https://github.com/minseokkangfox/magbFox-YMSC/blob/main/Animators%20%E2%80%94%20boksed/1.png?raw=true",
+      "fit": "contain",
+      "radius": 0,
+      "tracks": [
+        {
+          "prop": "opacity",
+          "loop": "loop",
+          "keys": [
+            {
+              "t": 0,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 502,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 1004,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 1506,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 2008,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 2510,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 3012,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 3514,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 4016,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 4518,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 5020,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 5522,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 6024,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 6526,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 7028,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 7530,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 8000,
+              "v": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lf6wmvi",
+      "name": "캐릭터 2 (오른쪽)",
+      "type": "image",
+      "x": 1240,
+      "y": 270,
+      "w": 265,
+      "h": 540,
+      "rotation": 0,
+      "scale": 1,
+      "opacity": 0,
+      "color": "#7aa2ff",
+      "fill": "solid",
+      "blend": "source-over",
+      "visible": true,
+      "src": "https://github.com/minseokkangfox/magbFox-YMSC/blob/main/Animators%20%E2%80%94%20boksed/2.png?raw=true",
+      "fit": "contain",
+      "radius": 0,
+      "tracks": [
+        {
+          "prop": "opacity",
+          "loop": "loop",
+          "keys": [
+            {
+              "t": 0,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 502,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 1004,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 1506,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 2008,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 2510,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 3012,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 3514,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 4016,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 4518,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 5020,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 5522,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 6024,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 6526,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 7028,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 7530,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 8000,
+              "v": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lpes0fy",
+      "name": "이모지 F1",
+      "type": "image",
+      "x": 671,
+      "y": 130,
+      "w": 578,
+      "h": 185,
+      "rotation": 0,
+      "scale": 1,
+      "opacity": 0,
+      "color": "#7aa2ff",
+      "fill": "solid",
+      "blend": "source-over",
+      "visible": true,
+      "src": "https://github.com/minseokkangfox/magbFox-YMSC/blob/main/Animators%20%E2%80%94%20boksed/F1.png?raw=true",
+      "fit": "contain",
+      "radius": 0,
+      "tracks": [
+        {
+          "prop": "opacity",
+          "loop": "loop",
+          "keys": [
+            {
+              "t": 0,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 502,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 1004,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 1506,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 2008,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 2510,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 3012,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 3514,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 4016,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 4518,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 5020,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 5522,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 6024,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 6526,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 7028,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 7530,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 8000,
+              "v": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lugpsij",
+      "name": "이모지 F2",
+      "type": "image",
+      "x": 743,
+      "y": 120,
+      "w": 440,
+      "h": 204,
+      "rotation": 0,
+      "scale": 1,
+      "opacity": 0,
+      "color": "#7aa2ff",
+      "fill": "solid",
+      "blend": "source-over",
+      "visible": true,
+      "src": "https://github.com/minseokkangfox/magbFox-YMSC/blob/main/Animators%20%E2%80%94%20boksed/F2.png?raw=true",
+      "fit": "contain",
+      "radius": 0,
+      "tracks": [
+        {
+          "prop": "opacity",
+          "loop": "loop",
+          "keys": [
+            {
+              "t": 0,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 502,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 1004,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 1506,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 2008,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 2510,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 3012,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 3514,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 4016,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 4518,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 5020,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 5522,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 6024,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 6526,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 7028,
+              "v": 0,
+              "easing": "step"
+            },
+            {
+              "t": 7530,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 8000,
+              "v": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "start_black_cover",
+      "name": "시작 가림막(검정)",
+      "type": "rect",
+      "x": -50,
+      "y": -20,
+      "w": 2020,
+      "h": 1120,
+      "rotation": 0,
+      "scale": 1,
+      "opacity": 1,
+      "color": "#000000",
+      "fill": "solid",
+      "blend": "source-over",
+      "visible": true,
+      "radius": 0,
+      "tracks": [
+        {
+          "prop": "opacity",
+          "loop": "once",
+          "keys": [
+            {
+              "t": 0,
+              "v": 1,
+              "easing": "step"
+            },
+            {
+              "t": 1000,
+              "v": 0
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "sidebar": {
+    "stage": {
+      "width": 360,
+      "height": 1080,
+      "duration": 8000,
+      "unlimited": true,
+      "loop": true,
+      "background": {
+        "type": "linear",
+        "angle": 120,
+        "stops": [
+          {
+            "at": 0,
+            "color": "#141428"
+          },
+          {
+            "at": 1,
+            "color": "#05050b"
+          }
+        ]
+      }
+    },
+    "layers": [
+      {
+        "id": "sb_rect",
+        "name": "사이드바 파랑 배경",
+        "type": "rect",
+        "x": 0,
+        "y": 0,
+        "w": 360,
+        "h": 1080,
+        "rotation": 0,
+        "scale": 1,
+        "opacity": 1,
+        "color": "#0d18ff",
+        "fill": "solid",
+        "blend": "source-over",
+        "visible": true,
+        "radius": 0
+      },
+      {
+        "id": "sb_c1",
+        "name": "사이드바 캐릭터 1 (위)",
+        "type": "image",
+        "x": 55,
+        "y": 40,
+        "w": 250,
+        "h": 380,
+        "rotation": 0,
+        "scale": 1,
+        "opacity": 0,
+        "color": "#7aa2ff",
+        "fill": "solid",
+        "blend": "source-over",
+        "visible": true,
+        "src": "https://github.com/minseokkangfox/magbFox-YMSC/blob/main/Animators%20%E2%80%94%20boksed/1.png?raw=true",
+        "fit": "contain",
+        "radius": 0,
+        "tracks": [
+          {
+            "prop": "opacity",
+            "loop": "loop",
+            "keys": [
+              {
+                "t": 0,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 502,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 1004,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 1506,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 2008,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 2510,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 3012,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 3514,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 4016,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 4518,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 5020,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 5522,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 6024,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 6526,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 7028,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 7530,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 8000,
+                "v": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sb_f1",
+        "name": "사이드바 이모지 F1 (가운데)",
+        "type": "image",
+        "x": 20,
+        "y": 450,
+        "w": 320,
+        "h": 160,
+        "rotation": 0,
+        "scale": 1,
+        "opacity": 0,
+        "color": "#7aa2ff",
+        "fill": "solid",
+        "blend": "source-over",
+        "visible": true,
+        "src": "https://github.com/minseokkangfox/magbFox-YMSC/blob/main/Animators%20%E2%80%94%20boksed/F1.png?raw=true",
+        "fit": "contain",
+        "radius": 0,
+        "tracks": [
+          {
+            "prop": "opacity",
+            "loop": "loop",
+            "keys": [
+              {
+                "t": 0,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 502,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 1004,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 1506,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 2008,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 2510,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 3012,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 3514,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 4016,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 4518,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 5020,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 5522,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 6024,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 6526,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 7028,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 7530,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 8000,
+                "v": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sb_f2",
+        "name": "사이드바 이모지 F2 (가운데)",
+        "type": "image",
+        "x": 20,
+        "y": 450,
+        "w": 320,
+        "h": 160,
+        "rotation": 0,
+        "scale": 1,
+        "opacity": 0,
+        "color": "#7aa2ff",
+        "fill": "solid",
+        "blend": "source-over",
+        "visible": true,
+        "src": "https://github.com/minseokkangfox/magbFox-YMSC/blob/main/Animators%20%E2%80%94%20boksed/F2.png?raw=true",
+        "fit": "contain",
+        "radius": 0,
+        "tracks": [
+          {
+            "prop": "opacity",
+            "loop": "loop",
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 502,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 1004,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 1506,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 2008,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 2510,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 3012,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 3514,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 4016,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 4518,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 5020,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 5522,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 6024,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 6526,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 7028,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 7530,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 8000,
+                "v": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sb_c2",
+        "name": "사이드바 캐릭터 2 (아래)",
+        "type": "image",
+        "x": 55,
+        "y": 640,
+        "w": 250,
+        "h": 380,
+        "rotation": 0,
+        "scale": 1,
+        "opacity": 0,
+        "color": "#7aa2ff",
+        "fill": "solid",
+        "blend": "source-over",
+        "visible": true,
+        "src": "https://github.com/minseokkangfox/magbFox-YMSC/blob/main/Animators%20%E2%80%94%20boksed/2.png?raw=true",
+        "fit": "contain",
+        "radius": 0,
+        "tracks": [
+          {
+            "prop": "opacity",
+            "loop": "loop",
+            "keys": [
+              {
+                "t": 0,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 502,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 1004,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 1506,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 2008,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 2510,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 3012,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 3514,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 4016,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 4518,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 5020,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 5522,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 6024,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 6526,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 7028,
+                "v": 0,
+                "easing": "step"
+              },
+              {
+                "t": 7530,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 8000,
+                "v": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sb_start_cover",
+        "name": "사이드바 시작 가림막(검정)",
+        "type": "rect",
+        "x": 0,
+        "y": 0,
+        "w": 360,
+        "h": 1080,
+        "rotation": 0,
+        "scale": 1,
+        "opacity": 1,
+        "color": "#000000",
+        "fill": "solid",
+        "blend": "source-over",
+        "visible": true,
+        "radius": 0,
+        "tracks": [
+          {
+            "prop": "opacity",
+            "loop": "once",
+            "keys": [
+              {
+                "t": 0,
+                "v": 1,
+                "easing": "step"
+              },
+              {
+                "t": 1000,
+                "v": 0
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
