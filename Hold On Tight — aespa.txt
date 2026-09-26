@@ -20,14 +20,315 @@
   "layers": [
     {
       "id": "main_neon_wireframe_tetris",
-      "name": "일반배경 타임라인 반응 네온 블록 낙하",
-      "type": "script",
+      "name": "일반배경 타임라인 반응 네온 블록 낙하 (블러)",
+      "type": "neon_tetris_drop",
       "x": 0,
       "y": 0,
       "w": 1920,
       "h": 1080,
-      "seed": 2026,
-      "code": "const curSongTime = (typeof song !== 'undefined' && song >= 0 ? song : (typeof time !== 'undefined' ? time : 0));\nconst blockSize = 48;\nconst loopHeight = height + 360;\n\nfunction getIntegratedTime(t) {\n  let dist = 0;\n  if (t <= 42) return t * 1.0;\n  dist += 42 * 1.0;\n  if (t <= 57) return dist + (t - 42) * 3.2;\n  dist += (57 - 42) * 3.2;\n  if (t <= 92) return dist + (t - 57) * 1.0;\n  dist += (92 - 57) * 1.0;\n  if (t <= 124) return dist + (t - 92) * 5.5;\n  dist += (124 - 92) * 5.5;\n  return dist + (t - 124) * 1.0;\n}\nconst virtualTime = getIntegratedTime(curSongTime);\n\nconst realBeat = Math.max(\n  (typeof level !== 'undefined' ? level : 0),\n  (typeof bass !== 'undefined' ? bass : 0)\n);\nconst bpmPhase = (curSongTime % 0.4615) / 0.4615;\nconst bpmPulse = Math.pow(Math.max(0, 1 - bpmPhase * 1.8), 2.2);\nconst audioBeat = Math.max(realBeat, bpmPulse);\n\nlet curSpeedMult = 1.0;\nlet beatPower = 0.2;\nif (curSongTime >= 42 && curSongTime < 57) {\n  curSpeedMult = 3.2;\n  beatPower = 1.05;\n} else if (curSongTime >= 76 && curSongTime < 92) {\n  curSpeedMult = 1.0;\n  beatPower = 0.85;\n} else if (curSongTime >= 92 && curSongTime < 108) {\n  curSpeedMult = 5.5;\n  beatPower = 1.35;\n} else if (curSongTime >= 108 && curSongTime < 124) {\n  curSpeedMult = 5.5;\n  beatPower = 1.5;\n} else {\n  curSpeedMult = 1.0;\n  beatPower = 0.2;\n}\n\nconst isFastMode = (curSpeedMult > 1.2);\nconst flashGlow = audioBeat * beatPower;\nconst isColorful = (curSongTime >= 76 && curSongTime < 124);\nconst is3D = (curSongTime >= 108 && curSongTime < 124);\nconst colorfulPalette = ['#00f0ff', '#ffbe0b', '#bd00ff', '#00ff66', '#ff0055', '#ff7700'];\n\nconst pieces = [\n  { shape: [[0,0],[1,0],[0,1],[1,1]], x: 80,   speed: 90,  startDelay: 0,    colorIdx: 0 },\n  { shape: [[0,0],[0,1],[0,2],[0,3]], x: 260,  speed: 155, startDelay: 320,  colorIdx: 1 },\n  { shape: [[0,0],[0,1],[0,2],[1,2]], x: 440,  speed: 115, startDelay: 680,  colorIdx: 2 },\n  { shape: [[0,1],[1,1],[1,0],[2,0]], x: 620,  speed: 95,  startDelay: 1040, colorIdx: 3 },\n  { shape: [[0,0],[1,0],[0,1],[1,1]], x: 820,  speed: 165, startDelay: 200,  colorIdx: 4 },\n  { shape: [[1,0],[0,1],[1,1],[2,1]], x: 1000, speed: 110, startDelay: 750,  colorIdx: 5 },\n  { shape: [[0,0],[0,1],[0,2],[0,3]], x: 1200, speed: 150, startDelay: 420,  colorIdx: 1 },\n  { shape: [[0,0],[1,0],[0,1],[1,1]], x: 1380, speed: 85,  startDelay: 900,  colorIdx: 0 },\n  { shape: [[0,0],[0,1],[0,2],[1,2]], x: 1560, speed: 125, startDelay: 1180, colorIdx: 2 },\n  { shape: [[0,1],[1,1],[1,0],[2,0]], x: 1740, speed: 100, startDelay: 560,  colorIdx: 3 }\n];\n\npieces.forEach(p => {\n  const totalY = virtualTime * p.speed + p.startDelay;\n  const currentY = (totalY % loopHeight) - 240;\n\n  if (currentY > -280 && currentY < height + 80) {\n    const activeColor = isColorful ? colorfulPalette[p.colorIdx % colorfulPalette.length] : '#00ff66';\n    const speedFactor = Math.min((p.speed * curSpeedMult) / 120, 4.0);\n\n    const ghostSteps = [16 * speedFactor, 36 * speedFactor, 60 * speedFactor];\n    const ghostAlphas = [0.28, 0.14, 0.06];\n    for (let g = ghostSteps.length - 1; g >= 0; g--) {\n      const offsetY = ghostSteps[g];\n      const alpha = ghostAlphas[g];\n      p.shape.forEach(([cx, cy]) => {\n        rect(p.x + cx * blockSize, currentY + cy * blockSize - offsetY, blockSize, blockSize, {\n          fill: 'solid',\n          color: '#000000',\n          stroke: activeColor,\n          strokeWidth: 1.5,\n          glow: 6 + flashGlow * 8,\n          opacity: alpha,\n          blend: 'screen'\n        });\n      });\n    }\n\n    const beamHeight = 35 * speedFactor;\n    p.shape.forEach(([cx, cy]) => {\n      const x = p.x + cx * blockSize;\n      const y = currentY + cy * blockSize;\n      rect(x, y - beamHeight, blockSize, beamHeight, {\n        fill: 'linear',\n        angle: 90,\n        color: '#000000',\n        color2: activeColor,\n        opacity: 0.15 + flashGlow * 0.25,\n        blend: 'screen'\n      });\n    });\n\n    if (flashGlow > 0.3) {\n      p.shape.forEach(([cx, cy]) => {\n        const x = p.x + cx * blockSize;\n        const y = currentY + cy * blockSize;\n        rect(x - 5, y - 5, blockSize + 10, blockSize + 10, {\n          fill: 'solid',\n          color: activeColor,\n          opacity: flashGlow * 0.45,\n          glow: 26 + flashGlow * 22,\n          blend: 'screen'\n        });\n      });\n    }\n\n    p.shape.forEach(([cx, cy]) => {\n      const x = p.x + cx * blockSize;\n      const y = currentY + cy * blockSize;\n\n      if (is3D) {\n        const bevel = 7;\n        rect(x, y, blockSize, blockSize, {\n          fill: 'solid',\n          color: '#040b07',\n          stroke: activeColor,\n          strokeWidth: 3 + flashGlow * 2,\n          glow: 22 + flashGlow * 25,\n          opacity: 1\n        });\n        rect(x + 2, y + 2, blockSize - 4, bevel, {\n          fill: 'solid',\n          color: '#ffffff',\n          opacity: 0.35 + flashGlow * 0.5,\n          blend: 'screen'\n        });\n        rect(x + bevel, y + bevel, blockSize - bevel * 2, blockSize - bevel * 2, {\n          fill: 'solid',\n          color: activeColor,\n          opacity: 0.25 + flashGlow * 0.4,\n          blend: 'screen'\n        });\n      } else {\n        rect(x, y, blockSize, blockSize, {\n          fill: 'solid',\n          color: isFastMode || isColorful ? activeColor : '#000000',\n          stroke: activeColor,\n          strokeWidth: 2 + flashGlow * 2.5,\n          glow: 14 + flashGlow * 24,\n          radius: 0,\n          opacity: isFastMode || isColorful ? (0.2 + flashGlow * 0.5) : 1\n        });\n      }\n    });\n  }\n});"
+      "blur": 14,
+      "blockSize": 48,
+      "loopExtra": 360,
+      "topOffset": 240,
+      "beatInterval": 0.4615,
+      "speedTimeline": [
+        {
+          "upTo": 42,
+          "speedMult": 1,
+          "beatPower": 0.2
+        },
+        {
+          "upTo": 57,
+          "speedMult": 3.2,
+          "beatPower": 1.05
+        },
+        {
+          "upTo": 76,
+          "speedMult": 1,
+          "beatPower": 0.2
+        },
+        {
+          "upTo": 92,
+          "speedMult": 1,
+          "beatPower": 0.85
+        },
+        {
+          "upTo": 108,
+          "speedMult": 5.5,
+          "beatPower": 1.35
+        },
+        {
+          "upTo": 124,
+          "speedMult": 5.5,
+          "beatPower": 1.5
+        }
+      ],
+      "afterSpeedMult": 1,
+      "afterBeatPower": 0.2,
+      "colorfulTimeline": {
+        "start": 76,
+        "end": 124
+      },
+      "is3DTimeline": {
+        "start": 108,
+        "end": 124
+      },
+      "palette": [
+        "#00f0ff",
+        "#ffbe0b",
+        "#bd00ff",
+        "#00ff66",
+        "#ff0055",
+        "#ff7700"
+      ],
+      "color": "#00ff66",
+      "flashPad": 5,
+      "bevel": 7,
+      "flashGlowBase": 26,
+      "flashGlowGain": 22,
+      "glow3dBase": 22,
+      "pieces": [
+        {
+          "shape": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "x": 80,
+          "speed": 90,
+          "startDelay": 0,
+          "colorIdx": 0
+        },
+        {
+          "shape": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "x": 260,
+          "speed": 155,
+          "startDelay": 320,
+          "colorIdx": 1
+        },
+        {
+          "shape": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "x": 440,
+          "speed": 115,
+          "startDelay": 680,
+          "colorIdx": 2
+        },
+        {
+          "shape": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              0
+            ]
+          ],
+          "x": 620,
+          "speed": 95,
+          "startDelay": 1040,
+          "colorIdx": 3
+        },
+        {
+          "shape": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "x": 820,
+          "speed": 165,
+          "startDelay": 200,
+          "colorIdx": 4
+        },
+        {
+          "shape": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              1
+            ]
+          ],
+          "x": 1000,
+          "speed": 110,
+          "startDelay": 750,
+          "colorIdx": 5
+        },
+        {
+          "shape": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "x": 1200,
+          "speed": 150,
+          "startDelay": 420,
+          "colorIdx": 1
+        },
+        {
+          "shape": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "x": 1380,
+          "speed": 85,
+          "startDelay": 900,
+          "colorIdx": 0
+        },
+        {
+          "shape": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "x": 1560,
+          "speed": 125,
+          "startDelay": 1180,
+          "colorIdx": 2
+        },
+        {
+          "shape": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              0
+            ]
+          ],
+          "x": 1740,
+          "speed": 100,
+          "startDelay": 560,
+          "colorIdx": 3
+        }
+      ]
     },
     {
       "id": "main_flash_42s",
@@ -122,13 +423,217 @@
       {
         "id": "sb_neon_wireframe_tetris",
         "name": "사이드바 타임라인 반응 네온 블록 낙하",
-        "type": "script",
+        "type": "neon_tetris_drop",
         "x": 0,
         "y": 0,
         "w": 360,
         "h": 1080,
-        "seed": 2026,
-        "code": "const curSongTime = (typeof song !== 'undefined' && song >= 0 ? song : (typeof time !== 'undefined' ? time : 0));\nconst blockSize = 40;\nconst loopHeight = height + 360;\n\nfunction getIntegratedTime(t) {\n  let dist = 0;\n  if (t <= 42) return t * 1.0;\n  dist += 42 * 1.0;\n  if (t <= 57) return dist + (t - 42) * 3.2;\n  dist += (57 - 42) * 3.2;\n  if (t <= 92) return dist + (t - 57) * 1.0;\n  dist += (92 - 57) * 1.0;\n  if (t <= 124) return dist + (t - 92) * 5.5;\n  dist += (124 - 92) * 5.5;\n  return dist + (t - 124) * 1.0;\n}\nconst virtualTime = getIntegratedTime(curSongTime);\n\nconst realBeat = Math.max(\n  (typeof level !== 'undefined' ? level : 0),\n  (typeof bass !== 'undefined' ? bass : 0)\n);\nconst bpmPhase = (curSongTime % 0.4615) / 0.4615;\nconst bpmPulse = Math.pow(Math.max(0, 1 - bpmPhase * 1.8), 2.2);\nconst audioBeat = Math.max(realBeat, bpmPulse);\n\nlet curSpeedMult = 1.0;\nlet beatPower = 0.2;\n\nif (curSongTime >= 42 && curSongTime < 57) {\n  curSpeedMult = 3.2;\n  beatPower = 1.05;\n} else if (curSongTime >= 76 && curSongTime < 92) {\n  curSpeedMult = 1.0;\n  beatPower = 0.85;\n} else if (curSongTime >= 92 && curSongTime < 108) {\n  curSpeedMult = 5.5;\n  beatPower = 1.35;\n} else if (curSongTime >= 108 && curSongTime < 124) {\n  curSpeedMult = 5.5;\n  beatPower = 1.5;\n} else {\n  curSpeedMult = 1.0;\n  beatPower = 0.2;\n}\n\nconst isFastMode = (curSpeedMult > 1.2);\nconst flashGlow = audioBeat * beatPower;\nconst isColorful = (curSongTime >= 76 && curSongTime < 124);\nconst is3D = (curSongTime >= 108 && curSongTime < 124);\nconst colorfulPalette = ['#00f0ff', '#ffbe0b', '#bd00ff', '#00ff66', '#ff0055', '#ff7700'];\n\nconst pieces = [\n  { shape: [[0,0],[1,0],[0,1],[1,1]], x: 236, speed: 90,  startDelay: 0.0,  colorIdx: 0 },\n  { shape: [[0,0],[0,1],[0,2],[0,3]], x: 135, speed: 155, startDelay: 350,  colorIdx: 1 },\n  { shape: [[0,0],[0,1],[0,2],[1,2]], x: 20,  speed: 120, startDelay: 680,  colorIdx: 2 },\n  { shape: [[0,1],[1,1],[1,0],[2,0]], x: 180, speed: 95,  startDelay: 1020, colorIdx: 3 },\n  { shape: [[0,0],[1,0],[0,1],[1,1]], x: 45,  speed: 165, startDelay: 1380, colorIdx: 4 },\n  { shape: [[1,0],[0,1],[1,1],[2,1]], x: 150, speed: 110, startDelay: 1720, colorIdx: 5 }\n];\n\npieces.forEach(p => {\n  const totalY = virtualTime * p.speed + p.startDelay;\n  const currentY = (totalY % loopHeight) - 220;\n\n  if (currentY > -260 && currentY < height + 80) {\n    const activeColor = isColorful ? colorfulPalette[p.colorIdx % colorfulPalette.length] : '#00ff66';\n    const speedFactor = Math.min((p.speed * curSpeedMult) / 120, 4.0);\n\n    const ghostSteps = [16 * speedFactor, 36 * speedFactor, 60 * speedFactor];\n    const ghostAlphas = [0.28, 0.14, 0.06];\n    for (let g = ghostSteps.length - 1; g >= 0; g--) {\n      const offsetY = ghostSteps[g];\n      const alpha = ghostAlphas[g];\n      p.shape.forEach(([cx, cy]) => {\n        rect(p.x + cx * blockSize, currentY + cy * blockSize - offsetY, blockSize, blockSize, {\n          fill: 'solid',\n          color: '#000000',\n          stroke: activeColor,\n          strokeWidth: 1.5,\n          glow: 6 + flashGlow * 8,\n          opacity: alpha,\n          blend: 'screen'\n        });\n      });\n    }\n\n    const beamHeight = 35 * speedFactor;\n    p.shape.forEach(([cx, cy]) => {\n      const x = p.x + cx * blockSize;\n      const y = currentY + cy * blockSize;\n      rect(x, y - beamHeight, blockSize, beamHeight, {\n        fill: 'linear',\n        angle: 90,\n        color: '#000000',\n        color2: activeColor,\n        opacity: 0.15 + flashGlow * 0.25,\n        blend: 'screen'\n      });\n    });\n\n    if (flashGlow > 0.3) {\n      p.shape.forEach(([cx, cy]) => {\n        const x = p.x + cx * blockSize;\n        const y = currentY + cy * blockSize;\n        rect(x - 4, y - 4, blockSize + 8, blockSize + 8, {\n          fill: 'solid',\n          color: activeColor,\n          opacity: flashGlow * 0.45,\n          glow: 24 + flashGlow * 20,\n          blend: 'screen'\n        });\n      });\n    }\n\n    p.shape.forEach(([cx, cy]) => {\n      const x = p.x + cx * blockSize;\n      const y = currentY + cy * blockSize;\n\n      if (is3D) {\n        const bevel = 6;\n        rect(x, y, blockSize, blockSize, {\n          fill: 'solid',\n          color: '#040b07',\n          stroke: activeColor,\n          strokeWidth: 3 + flashGlow * 2,\n          glow: 20 + flashGlow * 25,\n          opacity: 1\n        });\n        rect(x + 2, y + 2, blockSize - 4, bevel, {\n          fill: 'solid',\n          color: '#ffffff',\n          opacity: 0.35 + flashGlow * 0.5,\n          blend: 'screen'\n        });\n        rect(x + bevel, y + bevel, blockSize - bevel * 2, blockSize - bevel * 2, {\n          fill: 'solid',\n          color: activeColor,\n          opacity: 0.25 + flashGlow * 0.4,\n          blend: 'screen'\n        });\n      } else {\n        rect(x, y, blockSize, blockSize, {\n          fill: 'solid',\n          color: isFastMode || isColorful ? activeColor : '#000000',\n          stroke: activeColor,\n          strokeWidth: 2 + flashGlow * 2.5,\n          glow: 14 + flashGlow * 24,\n          radius: 0,\n          opacity: isFastMode || isColorful ? (0.2 + flashGlow * 0.5) : 1\n        });\n      }\n    });\n  }\n});"
+        "blockSize": 40,
+        "loopExtra": 360,
+        "topOffset": 220,
+        "beatInterval": 0.4615,
+        "speedTimeline": [
+          {
+            "upTo": 42,
+            "speedMult": 1,
+            "beatPower": 0.2
+          },
+          {
+            "upTo": 57,
+            "speedMult": 3.2,
+            "beatPower": 1.05
+          },
+          {
+            "upTo": 76,
+            "speedMult": 1,
+            "beatPower": 0.2
+          },
+          {
+            "upTo": 92,
+            "speedMult": 1,
+            "beatPower": 0.85
+          },
+          {
+            "upTo": 108,
+            "speedMult": 5.5,
+            "beatPower": 1.35
+          },
+          {
+            "upTo": 124,
+            "speedMult": 5.5,
+            "beatPower": 1.5
+          }
+        ],
+        "afterSpeedMult": 1,
+        "afterBeatPower": 0.2,
+        "colorfulTimeline": {
+          "start": 76,
+          "end": 124
+        },
+        "is3DTimeline": {
+          "start": 108,
+          "end": 124
+        },
+        "palette": [
+          "#00f0ff",
+          "#ffbe0b",
+          "#bd00ff",
+          "#00ff66",
+          "#ff0055",
+          "#ff7700"
+        ],
+        "color": "#00ff66",
+        "flashPad": 4,
+        "bevel": 6,
+        "flashGlowBase": 24,
+        "flashGlowGain": 20,
+        "glow3dBase": 20,
+        "pieces": [
+          {
+            "shape": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            "x": 236,
+            "speed": 90,
+            "startDelay": 0,
+            "colorIdx": 0
+          },
+          {
+            "shape": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                0,
+                3
+              ]
+            ],
+            "x": 135,
+            "speed": 155,
+            "startDelay": 350,
+            "colorIdx": 1
+          },
+          {
+            "shape": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                2
+              ]
+            ],
+            "x": 20,
+            "speed": 120,
+            "startDelay": 680,
+            "colorIdx": 2
+          },
+          {
+            "shape": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                2,
+                0
+              ]
+            ],
+            "x": 180,
+            "speed": 95,
+            "startDelay": 1020,
+            "colorIdx": 3
+          },
+          {
+            "shape": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            "x": 45,
+            "speed": 165,
+            "startDelay": 1380,
+            "colorIdx": 4
+          },
+          {
+            "shape": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                1
+              ]
+            ],
+            "x": 150,
+            "speed": 110,
+            "startDelay": 1720,
+            "colorIdx": 5
+          }
+        ]
       },
       {
         "id": "sb_flash_42s",
